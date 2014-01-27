@@ -28,12 +28,17 @@ app.use(logger());
 
 // route middleware
 
-app.use(route.get('/', list));
+app.use(route.get('/', home));
+app.use(route.get('/world', list));
 app.use(route.get('/world/new', add));
 app.use(route.get('/world/:id', show));
 app.use(route.post('/world', create));
 
 // route definitions
+
+function *home() {
+  this.body = yield render('layout.jade')
+}
 
 /**
  * Post listing.

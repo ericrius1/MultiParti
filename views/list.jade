@@ -1,4 +1,5 @@
-.hello hello!
-for world in worlds
-  .world
-    a(href='/world/#{world._id}') world
+extend layout
+block content
+  for world in worlds
+    .world
+      a(href='/world/#{world._id}') world
