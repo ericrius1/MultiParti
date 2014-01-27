@@ -5,6 +5,7 @@
 
 var render = require('./lib/render');
 var route = require('koa-route');
+var serve = require('koa-static')
 var views = require('co-views');
 var parse = require('co-body');
 var logger = require('koa-logger');
@@ -26,6 +27,9 @@ var posts = [];
 
 app.use(logger());
 
+//Serve static files
+app.use(serve('.'));
+
 // route middleware
 
 app.use(route.get('/', home));
@@ -46,7 +50,6 @@ function *home() {
 
 function *list() {
   allWorlds = yield worlds.find({})
-  console.log(worlds)
   this.body = yield render('list.jade', {worlds: allWorlds});
 }
 
