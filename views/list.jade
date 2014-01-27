@@ -1,3 +1,4 @@
 .hello hello!
 for world in worlds
-  .world= world.emitters[0].x
+  .world
+    a(href='/world/#{world._id}') world

@@ -29,10 +29,9 @@ app.use(logger());
 // route middleware
 
 app.use(route.get('/', list));
-app.use(route.get('/post/new', add));
-app.use(route.get('/post/:id', show));
-app.use(route.post('/post', create));
-app.use(route.get('/hibbidy', test));
+app.use(route.get('/world/new', add));
+app.use(route.get('/world/:id', show));
+app.use(route.post('/world', create));
 
 // route definitions
 
@@ -59,9 +58,7 @@ function *add() {
  */
 
 function *show(id) {
-  var post = posts[id];
-  if (!post) this.throw(404, 'invalid post id');
-  this.body = yield render('show', { post: post });
+  this.body = "post!"
 }
 
 /**
@@ -69,15 +66,7 @@ function *show(id) {
  */
 
 function *create() {
-  var post = yield parse(this);
-  var id = posts.push(post) - 1;
-  post.created_at = new Date;
-  post.id = id;
   this.redirect('/');
-}
-
-function *test(){
-  this.body = "yO! test!!"
 }
 
 // listen
