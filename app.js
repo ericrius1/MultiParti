@@ -14,7 +14,7 @@ var monk = require('monk');
 
 
 var db = monk('localhost/multi-party');
-var emitters = wrap(db.get('emitters'));
+var worlds = wrap(db.get('worlds'));
 
 var app = koa();
 
@@ -41,9 +41,9 @@ app.use(route.get('/hibbidy', test));
  */
 
 function *list() {
-  allEmitters = yield emitters.find({})
-  console.log(allEmitters)
-  this.body = yield render('list.jade', {emitters: allEmitters});
+  allWorlds = yield worlds.find({})
+  console.log(worlds)
+  this.body = yield render('list.jade', {worlds: allWorlds});
 }
 
 /**
