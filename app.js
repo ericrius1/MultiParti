@@ -19,19 +19,15 @@ var worlds = wrap(db.get('worlds'));
 
 var app = koa();
 
-// "database"
-
-var posts = [];
 
 // middleware
 
 app.use(logger());
 
 //Serve static files
-app.use(serve('.'));
+app.use(serve(__dirname + '/public'));
 
 // route middleware
-
 app.use(route.get('/', home));
 app.use(route.get('/world', list));
 app.use(route.get('/world/new', add));
