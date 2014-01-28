@@ -11,6 +11,7 @@
     "co-body": "0.0.1",
     "co-views": "0.2.0",
     "monk": "0.7.1",
-    "co-monk": "0.0.1" 
+    "co-monk": "0.0.1",
+    "browserify": "0.3.4" 
   }
 }

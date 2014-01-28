@@ -28,7 +28,7 @@ app.use(logger());
 app.use(serve(__dirname + '/public'));
 
 // route middleware
-app.use(route.get('/', home));
+app.use(route.get('/', list));
 app.use(route.get('/world', list));
 app.use(route.get('/world/new', add));
 app.use(route.get('/world/:id', show));
@@ -62,7 +62,7 @@ function *add() {
  */
 
 function *show(id) {
-  this.body = "post!"
+  this.body = yield render('show.jade')
 }
 
 /**
