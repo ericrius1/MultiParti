@@ -21,11 +21,23 @@ var app = koa();
 // middleware
 app.use(logger());
 
+var routes = {}
+
+spa.routeCollector(routes)
+
 
 app.use(spa(path_.join(__dirname, ''), {
-  index: 'index.html'
+  index: 'index.html',
+  routeBase: '/'
 }));
 
+app.use(route.get('/world', list));
+
+function *list() {
+  var res = yield worlds.find({})
+  this.body = res
+
+}
 // add your custom 404 page
 app.use(function* () {
 // requests not matching the routes will have a status of 404 by now,
@@ -34,6 +46,8 @@ app.use(function* () {
 	  res.body = 'Nothing Here.';
 	}
 });
+
+
 
 
 
