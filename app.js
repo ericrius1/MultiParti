@@ -25,6 +25,15 @@ app.use(spa(path_.join(__dirname, ''), {
 	index: 'index.html'
 }));
 
+// add your custom 404 page
+app.use(function* () {
+// requests not matching the routes will have a status of 404 by now,
+// but the response it not yet sent
+	if (this.status == 404) {
+	  res.body = 'Nothing Here.';
+	}
+});
+
 
 
 app.listen(3000);

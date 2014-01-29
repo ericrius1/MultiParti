@@ -1,14 +1,6 @@
-window.FW = {};
+FW = {};
 
-$(document).ready(function() {
-  var Main;
-  return FW.main = Main = (function() {
-    function Main() {
-      FW.myWorld = new FW.World();
-      FW.myWorld.animate();
-    }
-
-    return Main;
-
-  })();
-});
+window.onload = function() {
+  FW.myWorld = new FW.World();
+  return FW.myWorld.animate();
+};
