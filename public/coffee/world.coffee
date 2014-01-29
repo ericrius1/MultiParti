@@ -14,6 +14,11 @@ FW.World = class World
     #SCENE
     FW.scene = new THREE.Scene()
 
+    #CONTROL
+    @controls = new FW.Controls(FW.camera)
+    FW.scene.add FW.controls.getObject()
+    FW.controls.fly = true
+
     #RENDERER
     FW.Renderer = new THREE.WebGLRenderer()
     FW.Renderer.setSize @SCREEN_WIDTH, @SCREEN_HEIGHT
@@ -60,6 +65,7 @@ FW.World = class World
     requestAnimationFrame @animate
     time = Date.now()
     @water.material.uniforms.time.value += 1.0 / @rippleFactor
+    FW.controls.update(Date.now() - @time)
     @time = Date.now()
     @render()
   render : ->

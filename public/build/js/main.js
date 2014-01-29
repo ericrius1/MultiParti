@@ -1,4 +1,4 @@
-FW = {};
+window.FW = {};
 
 window.onload = function() {
   FW.myWorld = new FW.World();

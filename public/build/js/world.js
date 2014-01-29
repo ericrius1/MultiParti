@@ -15,6 +15,9 @@ FW.World = World = (function() {
     this.rippleFactor = 90;
     FW.camera = new THREE.PerspectiveCamera(75.0, this.SCREEN_WIDTH / this.SCREEN_HEIGHT, 1, this.camFar);
     FW.scene = new THREE.Scene();
+    this.controls = new FW.Controls(FW.camera);
+    FW.scene.add(FW.controls.getObject());
+    FW.controls.fly = true;
     FW.Renderer = new THREE.WebGLRenderer();
     FW.Renderer.setSize(this.SCREEN_WIDTH, this.SCREEN_HEIGHT);
     document.body.appendChild(FW.Renderer.domElement);
@@ -52,6 +55,7 @@ FW.World = World = (function() {
     requestAnimationFrame(this.animate);
     time = Date.now();
     this.water.material.uniforms.time.value += 1.0 / this.rippleFactor;
+    FW.controls.update(Date.now() - this.time);
     this.time = Date.now();
     return this.render();
   };
