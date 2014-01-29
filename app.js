@@ -21,8 +21,9 @@ var app = koa();
 // middleware
 app.use(logger());
 
+
 app.use(spa(path_.join(__dirname, ''), {
-	index: 'index.html'
+  index: 'index.html'
 }));
 
 // add your custom 404 page

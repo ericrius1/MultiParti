@@ -61,7 +61,7 @@ FW.Wand = Wand = (function() {
       spellEmitter = _ref[_i];
       if (Math.random() < this.emitterActivateFraction) {
         spellEmitter.position.copy(this.fakeObject.position);
-        spellEmitter.position.y = Math.max(0, spellEmitter.position.y);
+        spellEmitter.position.y = Math.max(5, spellEmitter.position.y);
         spellEmitter.enable();
         FW.spellsToUndo.push(spellEmitter);
       }

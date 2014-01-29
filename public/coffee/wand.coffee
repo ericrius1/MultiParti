@@ -53,7 +53,7 @@ FW.Wand = class Wand
     for spellEmitter in @spellEmitters
       if Math.random() < @emitterActivateFraction
         spellEmitter.position.copy(@fakeObject.position)
-        spellEmitter.position.y = Math.max 0, spellEmitter.position.y
+        spellEmitter.position.y = Math.max 5, spellEmitter.position.y
         spellEmitter.enable()
         FW.spellsToUndo.push spellEmitter
     @castingTimeout = setTimeout(=>
