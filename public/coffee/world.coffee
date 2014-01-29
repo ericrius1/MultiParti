@@ -24,9 +24,17 @@ FW.World = class World
     FW.Renderer.setSize @SCREEN_WIDTH, @SCREEN_HEIGHT
     document.body.appendChild FW.Renderer.domElement
 
-    mesh = new THREE.Mesh(new THREE.SphereGeometry(), new THREE.MeshBasicMaterial())
-    # FW.scene.add(mesh)
-    mesh.position.z -=200
+    # LIGHTING
+    light1 = new THREE.DirectionalLight( 0xffffff, 1.0 );
+    light1.position.set( 1, 1, 1 );
+    FW.scene.add( light1 );
+
+    light2 = new THREE.DirectionalLight( 0xffffff, 1.0 );
+    light2.position.set( 0, -1, -1);
+    FW.scene.add( light2 );
+
+    #SPELLS
+    FW.spells = new FW.Spells()
 
     # WATER
     waterNormals = new THREE.ImageUtils.loadTexture './public/assets/waternormals.jpg'
@@ -43,7 +51,6 @@ FW.World = class World
     )
     aMeshMirror.add @water
     aMeshMirror.rotation.x = -Math.PI * 0.5
-    aMeshMirror.position.y -=10
     FW.scene.add aMeshMirror
 
     
@@ -63,9 +70,9 @@ FW.World = class World
 
   animate : =>
     requestAnimationFrame @animate
-    time = Date.now()
     @water.material.uniforms.time.value += 1.0 / @rippleFactor
     FW.controls.update(Date.now() - @time)
+    FW.spells.update()
     @time = Date.now()
     @render()
   render : ->

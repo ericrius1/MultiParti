@@ -4,7 +4,7 @@ var World,
 FW.World = World = (function() {
   function World() {
     this.animate = __bind(this.animate, this);
-    var aMeshMirror, mesh, waterNormals,
+    var aMeshMirror, light1, light2, waterNormals,
       _this = this;
     FW.clock = new THREE.Clock();
     this.SCREEN_WIDTH = window.innerWidth;
@@ -21,8 +21,13 @@ FW.World = World = (function() {
     FW.Renderer = new THREE.WebGLRenderer();
     FW.Renderer.setSize(this.SCREEN_WIDTH, this.SCREEN_HEIGHT);
     document.body.appendChild(FW.Renderer.domElement);
-    mesh = new THREE.Mesh(new THREE.SphereGeometry(), new THREE.MeshBasicMaterial());
-    mesh.position.z -= 200;
+    light1 = new THREE.DirectionalLight(0xffffff, 1.0);
+    light1.position.set(1, 1, 1);
+    FW.scene.add(light1);
+    light2 = new THREE.DirectionalLight(0xffffff, 1.0);
+    light2.position.set(0, -1, -1);
+    FW.scene.add(light2);
+    FW.spells = new FW.Spells();
     waterNormals = new THREE.ImageUtils.loadTexture('./public/assets/waternormals.jpg');
     waterNormals.wrapS = waterNormals.wrapT = THREE.RepeatWrapping;
     this.water = new THREE.Water(FW.Renderer, FW.camera, FW.scene, {
@@ -35,7 +40,6 @@ FW.World = World = (function() {
     aMeshMirror = new THREE.Mesh(new THREE.PlaneGeometry(FW.width, FW.width, 50, 50), this.water.material);
     aMeshMirror.add(this.water);
     aMeshMirror.rotation.x = -Math.PI * 0.5;
-    aMeshMirror.position.y -= 10;
     FW.scene.add(aMeshMirror);
     window.addEventListener("resize", (function() {
       return _this.onWindowResize();
@@ -51,11 +55,10 @@ FW.World = World = (function() {
   };
 
   World.prototype.animate = function() {
-    var time;
     requestAnimationFrame(this.animate);
-    time = Date.now();
     this.water.material.uniforms.time.value += 1.0 / this.rippleFactor;
     FW.controls.update(Date.now() - this.time);
+    FW.spells.update();
     this.time = Date.now();
     return this.render();
   };
