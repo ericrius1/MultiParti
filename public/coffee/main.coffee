@@ -1,6 +1,6 @@
 window.FW = {}
 
-
-$(document).ready ->
-  FW.myWorld = new FW.World()
-  FW.myWorld.animate()
+FW.main = class Main
+  constructor: ->
+  	FW.myWorld = new FW.World()
+  	FW.myWorld.animate()

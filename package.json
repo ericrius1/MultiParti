@@ -12,7 +12,9 @@
     "co-views": "0.2.0",
     "monk": "0.7.1",
     "co-monk": "0.0.1",
-    "browserify": "0.3.4" 
+    "browserify": "0.3.4",
+    "koa-spa": "0.1.2",
+    "path": "0.4.9"
   },
   "devDependencies": {
     "gulp": "3.5.0",
