@@ -2,7 +2,7 @@ window.FW = {};
 
 $(document).ready(function() {
   return $.get("/world", function(data) {
-    console.log('ads');
-    debugger;
+    FW.myWorld = new FW.World(data);
+    return FW.myWorld.animate();
   });
 });

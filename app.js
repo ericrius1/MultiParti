@@ -23,15 +23,14 @@ app.use(logger());
 
 var routes = {}
 
-spa.routeCollector(routes)
 
+app.use(route.get('/world', list));
 
 app.use(spa(path_.join(__dirname, ''), {
   index: 'index.html',
   routeBase: '/'
 }));
 
-app.use(route.get('/world', list));
 
 function *list() {
   var res = yield worlds.find({})
