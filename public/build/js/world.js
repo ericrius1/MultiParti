@@ -4,7 +4,6 @@ var World,
 FW.World = World = (function() {
   function World(data) {
     this.animate = __bind(this.animate, this);
-    debugger;
     var aMeshMirror, light1, light2, waterNormals,
       _this = this;
     FW.clock = new THREE.Clock();

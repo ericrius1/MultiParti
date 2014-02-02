@@ -1,6 +1,5 @@
 FW.World = class World
   constructor : (data)->
-    debugger
     FW.clock = new THREE.Clock()
     @SCREEN_WIDTH = window.innerWidth
     @SCREEN_HEIGHT = window.innerHeight

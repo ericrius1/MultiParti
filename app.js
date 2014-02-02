@@ -1,11 +1,12 @@
-
+//mongoimport --db ArtWorld --collection artworks --file db.json
 /**
  * Module dependencies.
  */
 var path_ = require('path');
 var spa = require('koa-spa');
-var route = require('koa-route');
+var router = require('koa-route');
 var serve = require('koa-static');
+//this allows us to parse the native req object to get the body
 var parse = require('co-body');
 var logger = require('koa-logger');
 var koa = require('koa');
@@ -13,18 +14,19 @@ var wrap = require('co-monk');
 var monk = require('monk');
 
 
-var db = monk('localhost/multi-party');
-var worlds = wrap(db.get('worlds'));
+var db = monk('localhost/artworld');
+var artworks = wrap(db.get('artworks'));
 
 var app = koa();
 
 // middleware
 app.use(logger());
 
-var routes = {}
 
 
-app.use(route.get('/world', list));
+app.use(router.post('/artworks', save));
+app.use(router.get('/artworks', list));
+app.use(router.get('/artworks/:id', sendOne))
 
 app.use(spa(path_.join(__dirname, ''), {
   index: 'index.html',
@@ -33,8 +35,20 @@ app.use(spa(path_.join(__dirname, ''), {
 
 
 function *list() {
-  var res = yield worlds.find({})
-  this.body = res
+  var res = yield artworks.find({});
+  this.body = res;
+
+}
+
+function *sendOne(id) {
+
+}
+
+function *save() {
+  var emitters = yield parse.json(this);
+  console.log("ARTWORK: ",  emitters);
+  yield artworks.insert({emitters: emitters})
+  this.body = 'sucess'
 
 }
 // add your custom 404 page
