@@ -45,11 +45,10 @@ function *sendOne(id) {
 }
 
 function *save() {
-  var emitters = yield parse.json(this);
-  console.log("ARTWORK: ",  emitters);
-  yield artworks.insert({emitters: emitters})
+  var artwork = yield parse.json(this);
+  console.log("ARTWORK: ",  artwork);
+  yield artworks.insert({artwork: artwork})
   this.body = 'sucess'
-  console.log("CONTEXT", this)
 
 }
 // add your custom 404 page

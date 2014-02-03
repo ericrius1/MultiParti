@@ -2,7 +2,7 @@ var World,
   __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
 FW.World = World = (function() {
-  function World(data) {
+  function World(artworkData) {
     this.animate = __bind(this.animate, this);
     var aMeshMirror, light1, light2, waterNormals,
       _this = this;
@@ -13,7 +13,6 @@ FW.World = World = (function() {
     this.camFar = FW.width * 2;
     this.time = Date.now();
     this.rippleFactor = 90;
-    debugger;
     FW.camera = new THREE.PerspectiveCamera(75.0, this.SCREEN_WIDTH / this.SCREEN_HEIGHT, 1, this.camFar);
     FW.scene = new THREE.Scene();
     this.controls = new FW.Controls(FW.camera);
@@ -28,6 +27,7 @@ FW.World = World = (function() {
     light2 = new THREE.DirectionalLight(0xffffff, 1.0);
     light2.position.set(0, -1, -1);
     FW.scene.add(light2);
+    FW.ArtDirector = FW.ArtDirector(artworkData);
     FW.spells = new FW.Spells();
     waterNormals = new THREE.ImageUtils.loadTexture('./public/assets/waternormals.jpg');
     waterNormals.wrapS = waterNormals.wrapT = THREE.RepeatWrapping;

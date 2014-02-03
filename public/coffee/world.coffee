@@ -1,5 +1,5 @@
 FW.World = class World
-  constructor : (data)->
+  constructor : (artworkData)->
     FW.clock = new THREE.Clock()
     @SCREEN_WIDTH = window.innerWidth
     @SCREEN_HEIGHT = window.innerHeight
@@ -7,7 +7,6 @@ FW.World = class World
     @camFar = FW.width * 2
     @time = Date.now()
     @rippleFactor = 90
-    debugger
 
     # CAMERA
     FW.camera = new THREE.PerspectiveCamera(75.0, @SCREEN_WIDTH / @SCREEN_HEIGHT, 1, @camFar)
@@ -33,6 +32,9 @@ FW.World = class World
     light2 = new THREE.DirectionalLight( 0xffffff, 1.0 );
     light2.position.set( 0, -1, -1);
     FW.scene.add( light2 );
+
+    #PLACE ARTWORKS
+    FW.ArtDirector = FW.ArtDirector(artworkData)
 
     #SPELLS
     FW.spells = new FW.Spells()
