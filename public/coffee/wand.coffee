@@ -1,7 +1,7 @@
 FW.Wand = class Wand
   constructor: ->
     @name = 'wand'
-    @numEmitters = 20000
+    @numEmitters = 20
     @emitterActivateFraction = 1/ (@numEmitters)
     @spellEmitters = []
     @height = 220

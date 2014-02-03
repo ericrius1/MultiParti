@@ -7,6 +7,7 @@ FW.World = class World
     @camFar = FW.width * 2
     @time = Date.now()
     @rippleFactor = 90
+    debugger
 
     # CAMERA
     FW.camera = new THREE.PerspectiveCamera(75.0, @SCREEN_WIDTH / @SCREEN_HEIGHT, 1, @camFar)

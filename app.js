@@ -49,6 +49,7 @@ function *save() {
   console.log("ARTWORK: ",  emitters);
   yield artworks.insert({emitters: emitters})
   this.body = 'sucess'
+  console.log("CONTEXT", this)
 
 }
 // add your custom 404 page

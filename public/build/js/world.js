@@ -13,6 +13,7 @@ FW.World = World = (function() {
     this.camFar = FW.width * 2;
     this.time = Date.now();
     this.rippleFactor = 90;
+    debugger;
     FW.camera = new THREE.PerspectiveCamera(75.0, this.SCREEN_WIDTH / this.SCREEN_HEIGHT, 1, this.camFar);
     FW.scene = new THREE.Scene();
     this.controls = new FW.Controls(FW.camera);

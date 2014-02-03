@@ -6,21 +6,14 @@ $(document).ready(function() {
     return FW.myWorld.animate();
   });
   return $('.save').on('click', function() {
-    var req;
+    var emitterPositions, emitters, req;
+    emitters = FW.spells.spells[0].spellEmitters;
+    emitterPositions = _.pluck(emitters, 'position');
     return req = $.ajax({
       url: '/artworks',
       method: 'post',
       contentType: 'json',
-      data: JSON.stringify({
-        emitters: [
-          {
-            'x': 20,
-            'y': 20,
-            'z': 'z',
-            20: 20
-          }
-        ]
-      })
+      data: JSON.stringify(emitterPositions)
     });
   });
 });
