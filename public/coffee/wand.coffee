@@ -48,7 +48,7 @@ FW.Wand = class Wand
     @fakeObject.position.copy FW.controls.getPosition()
     direction = FW.controls.getDirection()
     @fakeObject.translateZ(direction.z * @distanceFromPlayer)
-    @fakeObject.translateY(direction.y * @distanceFromPlayer)
+    @fakeObject.translateY(direction.y * @distanceFromPlayer)s
     @fakeObject.translateX(direction.x * @distanceFromPlayer)
     for spellEmitter in @spellEmitters
       if Math.random() < @emitterActivateFraction

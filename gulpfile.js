@@ -26,7 +26,10 @@ gulp.task('coffee', function(){
         file.coffee_path = file.path;
       })
       .pipe(coffee({bare: true}))
-        .on('error', gutil.beep)
+        .on('error', function(error){
+          gutil.log(error);
+          gutil.beep();
+        })
       .pipe(gulp.dest(destDir))
 
 });
