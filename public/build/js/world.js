@@ -27,7 +27,7 @@ FW.World = World = (function() {
     light2 = new THREE.DirectionalLight(0xffffff, 1.0);
     light2.position.set(0, -1, -1);
     FW.scene.add(light2);
-    FW.ArtDirector = FW.ArtDirector(artworkData);
+    this.artDirector = new FW.ArtDirector(artworkData);
     FW.spells = new FW.Spells();
     waterNormals = new THREE.ImageUtils.loadTexture('./public/assets/waternormals.jpg');
     waterNormals.wrapS = waterNormals.wrapT = THREE.RepeatWrapping;
@@ -60,6 +60,7 @@ FW.World = World = (function() {
     this.water.material.uniforms.time.value += 1.0 / this.rippleFactor;
     FW.controls.update(Date.now() - this.time);
     FW.spells.update();
+    this.artDirector.update();
     this.time = Date.now();
     return this.render();
   };

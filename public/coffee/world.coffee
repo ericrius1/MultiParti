@@ -34,7 +34,7 @@ FW.World = class World
     FW.scene.add( light2 );
 
     #PLACE ARTWORKS
-    FW.ArtDirector = FW.ArtDirector(artworkData)
+    @artDirector = new FW.ArtDirector(artworkData)
 
     #SPELLS
     FW.spells = new FW.Spells()
@@ -76,6 +76,7 @@ FW.World = class World
     @water.material.uniforms.time.value += 1.0 / @rippleFactor
     FW.controls.update(Date.now() - @time)
     FW.spells.update()
+    @artDirector.update()
     @time = Date.now()
     @render()
   render : ->

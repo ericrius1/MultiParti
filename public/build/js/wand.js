@@ -4,7 +4,7 @@ FW.Wand = Wand = (function() {
   function Wand() {
     var texture;
     this.name = 'wand';
-    this.numEmitters = 20;
+    this.numEmitters = 1000;
     this.emitterActivateFraction = 1 / this.numEmitters;
     this.spellEmitters = [];
     this.height = 220;

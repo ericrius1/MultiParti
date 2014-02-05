@@ -1,7 +1,7 @@
 FW.Wand = class Wand
   constructor: ->
     @name = 'wand'
-    @numEmitters = 20
+    @numEmitters = 1000
     @emitterActivateFraction = 1/ (@numEmitters)
     @spellEmitters = []
     @height = 220
@@ -48,7 +48,7 @@ FW.Wand = class Wand
     @fakeObject.position.copy FW.controls.getPosition()
     direction = FW.controls.getDirection()
     @fakeObject.translateZ(direction.z * @distanceFromPlayer)
-    @fakeObject.translateY(direction.y * @distanceFromPlayer)s
+    @fakeObject.translateY(direction.y * @distanceFromPlayer)
     @fakeObject.translateX(direction.x * @distanceFromPlayer)
     for spellEmitter in @spellEmitters
       if Math.random() < @emitterActivateFraction
